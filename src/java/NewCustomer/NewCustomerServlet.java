@@ -12,7 +12,7 @@ public class NewCustomerServlet extends HttpServlet {
                           HttpServletResponse response) 
                           throws ServletException, IOException {
 
-        String url = "/index.html";
+        String url = "/index.jsp";
 
         // get current action
         String action = request.getParameter("action");
@@ -22,20 +22,40 @@ public class NewCustomerServlet extends HttpServlet {
 
         // perform action and set URL to appropriate page
         if (action.equals("join")) {
-            url = "/index.html";    // the "join" page
+            url = "/new_customer.html";    // the "join" page
         }
         else if (action.equals("add")) {                
             // get parameters from the request
+            String firstName = request.getParameter("firstName");
+            String lastName = request.getParameter("lastName");
+            String phone = request.getParameter("phone");
+            String address = request.getParameter("address");
+            String city = request.getParameter("city");
+            String state = request.getParameter("state");
+            String zipcode = request.getParameter("zipcode");
+            String email = request.getParameter("email");
             String userName = request.getParameter("userName");
             String password = request.getParameter("password");
 
             // store data in User object and save User object in database
-            NewCustomer user = new NewCustomer(userName, password);
-            UserDB.insert(user);
+            User user = new User(firstName, lastName, phone, address, city, state, zipcode, email, userName, password);
             
+            if (firstName == null || lastName == null || phone == null || address == null || city = null || state == null || 
+                zipcode == null || email == null ||  userName == null || password == null || firstName.isEmpty() || lastName.isEmpty() ||
+                phone.isEmpty() || address.isEmpty() || city.isEmpty() || state.isEmpty() || zipcode.isEmpty() || email.isEmpty() ||
+                userName.isEmpty() || password.isEmpty()) {
+                message = "Please fill out all the text boxes.";
+                url = "/new_customer.html";
+            }
+            else {
+                message = null;
+                url = "/success.html";
+                UserDB.insert(user);
+            }
             // set User object in request object and set URL
             request.setAttribute("user", user);
-            url = "/success.html";   // the "success" page
+            request.setAttribute("message", message);
+            
         }
         
         // forward request and response objects to specified URL

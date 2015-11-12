@@ -8,4 +8,4 @@
 
 <p>Welcome ${user.firstName.lastName}</p> 
     
-<c: import url="/includes/footer.jsp"/>
+<c:import url="/includes/footer.jsp"/>

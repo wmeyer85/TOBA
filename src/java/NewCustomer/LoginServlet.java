@@ -1,18 +1,19 @@
 package NewCustomer;
 
 import java.io.Serializable;
+import NewCustomer.User;
 
-public class NewCustomer implements Serializable {
+public class User implements Serializable {
 
     private String userName;
     private String password;
 
-    public NewCustomer() {
-        userName = "jsmith@toba.com";
-        password = "letmein";
+    public User() {
+        userName = "lastName" + zipcode;
+        password = "welcome1";
     }
 
-    public NewCustomer(String userName, String password) {
+    public User(String userName, String password) {
         this.userName = userName;
         this.password = password;
     }
