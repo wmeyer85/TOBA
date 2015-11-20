@@ -20,6 +20,10 @@ public class User implements Serializable {
         userName = "jsmith@toba.com";
         password = "letmein";
     }
+    
+    private screen {
+test
+            }
 
     public User(String userName, String password) {
         this.firstName = firstName;
