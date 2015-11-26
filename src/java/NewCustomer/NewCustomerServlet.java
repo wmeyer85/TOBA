@@ -1,5 +1,7 @@
 package NewCustomer;
 
+import toba.business.User;
+import toba.data.UserDB;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -40,18 +42,29 @@ public class NewCustomerServlet extends HttpServlet {
             // store data in User object and save User object in database
             User user = new User(firstName, lastName, phone, address, city, state, zipcode, email, userName, password);
             
-            if (firstName == null || lastName == null || phone == null || address == null || city = null || state == null || 
-                zipcode == null || email == null ||  userName == null || password == null || firstName.isEmpty() || lastName.isEmpty() ||
-                phone.isEmpty() || address.isEmpty() || city.isEmpty() || state.isEmpty() || zipcode.isEmpty() || email.isEmpty() ||
+            String message;
+             if (firstName.isEmpty() || lastName.isEmpty() ||
+               phone.isEmpty() || address.isEmpty() || city.isEmpty() || state.isEmpty() || zipcode.isEmpty() || email.isEmpty() ||
                 userName.isEmpty() || password.isEmpty()) {
                 message = "Please fill out all the text boxes.";
-                url = "/new_customer.html";
+                   url = "/new_customer.html";
             }
-            else {
+                else {
                 message = null;
-                url = "/success.html";
-                UserDB.insert(user);
-            }
+                   url = "/success.html";
+                   
+            String message;
+             if (UserDB.usernameExists(user.getUserName())) {
+                 message = "This Username already exists.<br>" +
+                         "Please enter another Username.";
+                 url = "/index.jsp";
+             }
+             else {
+                 message = "";
+                 url = "/success.html";
+                 UserDB.insert(user);
+             }
+  }
             // set User object in request object and set URL
             request.setAttribute("user", user);
             request.setAttribute("message", message);

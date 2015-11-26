@@ -1,9 +1,17 @@
-package NewCustomer;
+package toba.business;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+
+@Entity
 public class User implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String firstName;
     private String lastName;
     private String phone;
@@ -20,10 +28,7 @@ public class User implements Serializable {
         userName = "jsmith@toba.com";
         password = "letmein";
     }
-    
-    private screen {
-test
-            }
+   
 
     public User(String userName, String password) {
         this.firstName = firstName;
@@ -64,6 +69,13 @@ test
     }
 
     public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+    public String getPhone() {
+        return lastName;
+    }
+
+    public void setPhone(String phone) {
         this.lastName = lastName;
     }
     
@@ -115,7 +127,7 @@ test
         this.userName = userName;
     }
     
-    public String getpassword() {
+    public String getPassword() {
         return password;
     }
     public void setPassword(String password) {
