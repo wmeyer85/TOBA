@@ -53,8 +53,8 @@ public class NewCustomerServlet extends HttpServlet {
                 message = null;
                    url = "/success.html";
                    
-            String message;
-             if (UserDB.usernameExists(user.getUserName())) {
+            
+             if (UserDB.user_idExists(user.getUserName())) {
                  message = "This Username already exists.<br>" +
                          "Please enter another Username.";
                  url = "/index.jsp";
