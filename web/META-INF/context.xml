@@ -1,2 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context antiJARLocking="true" path=""/>
+<Realm className="org.apache.catalina.realm.JDBCRealm" 
+         connectionName="root" connectionPassword="sesame" 
+         connectionURL="jdbc:mysql://localhost:3306/toba" 
+         debug="99" driverName="com.mysql.jdbc.Driver" 
+         roleNameCol="Rolename" userCredCol="Password" userNameCol="Username" 
+         userRoleTable="UserRole" userTable="UserPass"/>
